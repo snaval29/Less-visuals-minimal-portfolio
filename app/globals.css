@@ -5,7 +5,8 @@
 
 /* 2. TAILWIND THEME CONFIGURATION (v4 Syntax) */
 @theme {
-  --font-sans: "General Sans", ui-sans-serif, system-ui, sans-serif;
+  /* Use !important-like behavior by ensuring this is the first variable */
+  --font-sans: "General Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
   
   /* 3D Button Shadows */
   --shadow-3d: 0 10px 20px -10px rgba(0, 0, 0, 0.4);
@@ -20,28 +21,39 @@
 /* 3. BASE STYLES */
 @layer base {
   html {
-    /* Prevents layout shift during scroll */
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
+    /* Prevents mobile browsers from resizing text automatically */
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
+    /* Use @apply for tailwind utilities, but set font-family explicitly */
     @apply bg-white text-neutral-900 antialiased;
-    font-family: var(--font-sans);
-    /* ⬅️ FIX: Remove the old #0a0a0a background to make it white/minimal */
+    
+    /* 🚀 FIXED: This ensures General Sans is forced on all devices */
+    font-family: "General Sans", sans-serif !important;
     background-color: #ffffff !important;
+    
+    /* Improved font rendering for mobile */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Prevent horizontal scroll from icons bleeding out */
+    overflow-x: hidden;
   }
 }
 
 /* 4. PERFORMANCE & UTILITIES */
 
-/* Stop the "Jitter": GPU acceleration for scrolling and sticky elements */
+/* Stop the "Jitter": GPU acceleration */
 .transform-gpu {
   transform: translate3d(0, 0, 0);
   will-change: transform;
 }
 
-/* 🚀 PERFORMANCE FIX: Disable heavy blurs on mobile/tablets */
+/* Disable heavy blurs on mobile/tablets for performance */
 @media (max-width: 1024px) {
   .backdrop-blur-xl, 
   .backdrop-blur-lg, 
@@ -61,7 +73,7 @@
 
 /* Atropos / 3D Tilt Fixes */
 .atropos-inner {
-    border-radius: 32px !important; 
+  border-radius: 32px !important; 
 }
 
 /* Masonry Column spacing fix */
