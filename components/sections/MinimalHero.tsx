@@ -1,58 +1,128 @@
 "use client";
 import { motion } from "framer-motion";
-import { Download } from "lucide-react"; 
+import { Download } from "lucide-react";
+import Image from "next/image";
 
 export const MinimalHero = () => {
   return (
-    // Mobile: pt-24 (tight), Desktop: pt-32. Removed min-h requirement to prevent gaps on mobile.
-    <section className="w-full flex flex-col justify-center bg-white text-neutral-900 pt-24 pb-12 md:pt-32 md:pb-20">
-      <div className="max-w-7xl mx-auto px-5 md:px-12 w-full">
+    <section className="relative w-full min-h-[85vh] flex flex-col justify-start bg-white text-neutral-900 pt-20 pb-10 sm:pt-24 md:pt-32 md:pb-20 font-sans overflow-hidden">
+      
+      {/* --- ASSET LAYER --- */}
+      <div className="absolute inset-0 pointer-events-none z-0">
         
+        {/* 1. Headphones: Top left, safely positioned */}
+        <div className="absolute 
+          top-[2%] left-[2%] w-14 h-14
+          xs:top-[3%] xs:left-[3%] xs:w-16 xs:h-16
+          sm:top-[8%] sm:left-[6%] sm:w-24 sm:h-24
+          md:top-[15%] md:left-[20%] md:w-36 md:h-36
+          lg:top-[18%] lg:left-[25%] lg:w-40 lg:h-40
+          mix-blend-multiply opacity-80">
+          <Image 
+            src="/images/headphone.png" 
+            alt="3D Headphones" 
+            fill 
+            className="object-contain saturate-[0.8]" 
+            priority 
+          />
+        </div>
+
+        {/* 2. Bulb-Pencil: Top right, well separated */}
+        <div className="absolute 
+          top-[18%] right-[1%] w-12 h-12
+          xs:top-[20%] xs:right-[2%] xs:w-14 xs:h-14
+          sm:top-[24%] sm:right-[4%] sm:w-18 sm:h-18
+          md:top-[25%] md:right-[25%] md:w-32 md:h-32
+          lg:top-[22%] lg:right-[30%] lg:w-44 lg:h-44
+          rotate-[35deg] mix-blend-multiply opacity-95">
+          <Image 
+            src="/images/bulb.png" 
+            alt="3D Idea Bulb" 
+            fill 
+            className="object-contain" 
+          />
+        </div>
+
+        {/* 3. Microphone: Bottom area, clear of content */}
+        <div className="absolute 
+          bottom-[3%] left-[5%] w-16 h-16
+          xs:bottom-[4%] xs:left-[6%] xs:w-18 xs:h-18
+          sm:bottom-[8%] sm:left-[8%] sm:w-22 sm:h-22
+          md:bottom-[8%] md:left-[28%] md:w-32 md:h-32
+          lg:bottom-[6%] lg:left-[32%] lg:w-38 lg:h-38
+          -rotate-[15deg] mix-blend-multiply opacity-75">
+          <Image 
+            src="/images/mic.png" 
+            alt="3D Microphone" 
+            fill 
+            className="object-contain saturate-[0.85]" 
+          />
+        </div>
+      </div>
+
+      {/* --- CONTENT LAYER --- */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 w-full relative z-10">
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
+           initial={{ opacity: 0, y: 16 }}
            animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.6 }}
-           className="relative z-10"
+           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+           className="mt-8 sm:mt-4 md:mt-0"
         >
           {/* Status Badge */}
-          <div className="flex items-center gap-2 mb-6 md:mb-8">
+          <div className="flex items-center gap-2 mb-5 sm:mb-6 md:mb-8">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase text-neutral-500">
+            <span className="text-[9px] sm:text-[10px] md:text-xs font-bold tracking-widest uppercase text-neutral-500">
               Online & Building
             </span>
           </div>
 
-          {/* Headline - RESPONSIVE SCALING */}
-          {/* Mobile: text-5xl, Tablet: text-7xl, Desktop: text-9xl */}
-          <h1 className="text-5xl sm:text-7xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-8 md:mb-12 -ml-0.5">
-            Rhythm in <br />
-            <span className="text-neutral-400">Design.</span> <br />
-            Logic in <span className="text-neutral-400">Code.</span>
+          {/* Headline - Carefully sized to avoid icon overlap */}
+          <h1 className="
+            text-[15vw] leading-[0.92]
+            xs:text-[14vw] xs:leading-[0.9]
+            sm:text-6xl sm:leading-[0.88]
+            md:text-8xl md:leading-[0.85]
+            lg:text-[9rem]
+            xl:text-[10rem]
+            font-bold tracking-tighter mb-6 sm:mb-8 md:mb-10 -ml-1 text-black
+            max-w-[90%] sm:max-w-none">
+            Hi! <br />
+            <span className="text-neutral-500">Naval</span> Here.
           </h1>
 
-          {/* Subline */}
-          <p className="max-w-lg md:max-w-2xl text-lg md:text-2xl text-neutral-800 font-medium leading-relaxed mb-8 md:mb-12">
-             I design interfaces that feel musical and build systems that are technically robust.
+          {/* Subline - Constrained width on mobile */}
+          <p className="
+            max-w-[85%] xs:max-w-xs sm:max-w-md md:max-w-lg 
+            text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl 
+            text-neutral-500 font-medium 
+            leading-relaxed mb-8 sm:mb-10 md:mb-12 
+            tracking-tight">
+             I design interfaces that feel <span className="text-black italic">musical</span> and build systems that are technically robust. 
           </p>
 
-          {/* Button */}
-          <div className="flex flex-wrap gap-4">
+          {/* CTA Button - Responsive sizing */}
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-10 mb-4 sm:mb-0">
             <a 
                 href="/resume.pdf" 
                 target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-neutral-900 text-white rounded-full hover:bg-black transition-all"
+                className="
+                  group relative inline-flex items-center gap-2 sm:gap-2.5 md:gap-3 
+                  px-7 py-3.5 sm:px-8 sm:py-4 md:px-10 md:py-5 
+                  bg-neutral-900 text-white rounded-xl sm:rounded-xl md:rounded-2xl 
+                  transition-all duration-300 transform-gpu
+                  active:scale-95 active:translate-y-0.5
+                  shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)] sm:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]
+                  before:absolute before:inset-0 before:rounded-xl sm:before:rounded-xl md:before:rounded-2xl before:border-t before:border-white/20
+                  after:absolute after:inset-0 after:rounded-xl sm:after:rounded-xl md:after:rounded-2xl after:shadow-[inset_0_-4px_8px_rgba(0,0,0,0.4)]
+                "
             >
-                <span className="font-bold text-xs md:text-sm uppercase tracking-widest">
-                    Download Resume
-                </span>
-                <Download size={16} className="group-hover:translate-y-0.5 transition-transform" />
+                <span className="font-bold text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] relative z-10">Get Resume</span>
+                <Download size={12} className="sm:w-[13px] sm:h-[13px] md:w-[14px] md:h-[14px] group-hover:translate-y-1 transition-transform relative z-10" />
             </a>
           </div>
-
         </motion.div>
       </div>
     </section>

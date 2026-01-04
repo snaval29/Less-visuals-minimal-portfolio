@@ -1,57 +1,70 @@
+/* 1. CDN FONT IMPORT - Must be at the very top */
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
 @import "tailwindcss";
 
-/* app/globals.css */
-
-/* ⬅️ FIX: Add this universal rule to prevent rendering gaps */
-html, body {
-  background-color: #0a0a0a !important; /* This matches neutral-950 */
+/* 2. TAILWIND THEME CONFIGURATION (v4 Syntax) */
+@theme {
+  --font-sans: "General Sans", ui-sans-serif, system-ui, sans-serif;
+  
+  /* 3D Button Shadows */
+  --shadow-3d: 0 10px 20px -10px rgba(0, 0, 0, 0.4);
+  --shadow-3d-hover: 0 15px 30px -12px rgba(0, 0, 0, 0.5);
+  
+  /* Custom Colors */
+  --color-neutral-50: #f9f9f9;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-900: #111111;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* 3. BASE STYLES */
+@layer base {
+  html {
+    /* Prevents layout shift during scroll */
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply bg-white text-neutral-900 antialiased;
+    font-family: var(--font-sans);
+    /* ⬅️ FIX: Remove the old #0a0a0a background to make it white/minimal */
+    background-color: #ffffff !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 4. PERFORMANCE & UTILITIES */
+
+/* Stop the "Jitter": GPU acceleration for scrolling and sticky elements */
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
-/* 🚀 PERFORMANCE FIX: Disable heavy blurs on mobile */
-@media (max-width: 768px) {
+
+/* 🚀 PERFORMANCE FIX: Disable heavy blurs on mobile/tablets */
+@media (max-width: 1024px) {
   .backdrop-blur-xl, 
   .backdrop-blur-lg, 
   .backdrop-blur-md, 
   .backdrop-blur-sm {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    /* Fallback: Slightly more opaque background so text is readable */
-    background-color: rgba(10, 10, 10, 0.95) !important; 
+    background-color: rgba(255, 255, 255, 0.98) !important; 
   }
 }
 
-/* Enable hardware acceleration for animations */
-.will-change-transform {
-  will-change: transform;
-  transform: translateZ(0);
+/* Selection Style */
+::selection {
+  background-color: #111111;
+  color: #ffffff;
 }
+
+/* Atropos / 3D Tilt Fixes */
 .atropos-inner {
-    border-radius: 24px !important; /* Matches your theme */
+    border-radius: 32px !important; 
 }
-.atropos-highlight {
-    background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent 50%) !important;
+
+/* Masonry Column spacing fix */
+.break-inside-avoid {
+  break-inside: avoid;
 }
