@@ -39,7 +39,8 @@ const codeProjects = [
 
 export const MinimalWork = () => {
   return (
-    <section id="work" className="relative w-full py-24 md:py-32 bg-white text-neutral-900 border-t border-neutral-100 font-sans overflow-hidden">
+    /* FIXED: Changed py-24 to pt-12 pb-24 for mobile. md:py-32 remains unchanged for web */
+    <section id="work" className="relative w-full pt-12 pb-24 md:py-32 bg-white text-neutral-900 border-t border-neutral-100 font-sans overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
@@ -67,7 +68,7 @@ export const MinimalWork = () => {
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="block transform-gpu">
                         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-20 items-center">
                             
-                            {/* Image: Force GPU rendering to prevent scroll-stutter */}
+                            {/* Image Container */}
                             <div className="w-full lg:col-span-7 relative aspect-[4/3] md:aspect-[16/10] bg-neutral-50 overflow-hidden rounded-[2rem] md:rounded-[3rem] border border-neutral-100 will-change-transform">
                                 <Image 
                                     src={project.image} 
