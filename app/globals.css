@@ -1,18 +1,16 @@
-@import "tailwindcss";
-
-/* 1. CDN FONT IMPORT - This "locks" the font so devices don't use their own */
+/* 1. CDN FONT IMPORT - Must be the very first line of the file */
 @import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+@import "tailwindcss";
 
 /* 2. TAILWIND THEME CONFIGURATION (v4 Syntax) */
 @theme {
-  /* Force General Sans as the primary, fallback to basic sans-serif only if offline */
+  /* We define the specific font name here */
   --font-sans: "General Sans", sans-serif;
   
-  /* 3D Button Shadows */
   --shadow-3d: 0 10px 20px -10px rgba(0, 0, 0, 0.4);
   --shadow-3d-hover: 0 15px 30px -12px rgba(0, 0, 0, 0.5);
   
-  /* Custom Colors */
   --color-neutral-50: #f9f9f9;
   --color-neutral-100: #f5f5f5;
   --color-neutral-900: #111111;
@@ -23,62 +21,49 @@
   html {
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
-    /* Prevents mobile browsers from resizing text automatically */
+    /* Prevents mobile browsers from resizing text to their own "readable" default */
     -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-white text-neutral-900 antialiased;
     
-    /* 🚀 CRITICAL: We use !important to stop mobile devices from overriding this */
+    /* 🚀 THE FIX: This forces the specific CDN font and ignores system themes */
     font-family: "General Sans", sans-serif !important;
     
     /* Force Light Mode - prevents device "Dark Mode" from changing colors */
     background-color: #ffffff !important;
     color: #111111 !important;
     
-    /* Improved rendering for high-res mobile screens */
+    /* Premium Rendering for high-res mobile screens */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     
-    /* Prevents side-scrolling from icons on narrow screens */
     overflow-x: hidden;
   }
 }
 
-/* 4. PERFORMANCE & UTILITIES */
+/* 4. UTILITIES */
+.font-sans {
+  /* Overrides any Tailwind utility defaults with your specific font */
+  font-family: "General Sans", sans-serif !important;
+}
 
-/* GPU acceleration to prevent mobile 'jitter' */
 .transform-gpu {
   transform: translate3d(0, 0, 0);
   will-change: transform;
 }
 
-/* Performance fix for mobile blurs */
 @media (max-width: 1024px) {
-  .backdrop-blur-xl, 
-  .backdrop-blur-lg, 
-  .backdrop-blur-md, 
-  .backdrop-blur-sm {
+  .backdrop-blur-xl, .backdrop-blur-lg, .backdrop-blur-md, .backdrop-blur-sm {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background-color: rgba(255, 255, 255, 0.98) !important; 
   }
 }
 
-/* Custom Selection Style */
 ::selection {
   background-color: #111111;
   color: #ffffff;
-}
-
-/* 3D Tilt Border Radius Fix */
-.atropos-inner {
-  border-radius: 32px !important; 
-}
-
-/* Masonry Column spacing fix */
-.break-inside-avoid {
-  break-inside: avoid;
 }

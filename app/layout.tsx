@@ -17,8 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="font-sans bg-white text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white lg:cursor-none">
+    /* We add "suppressHydrationWarning" to prevent 
+       browser extensions from causing a font-flicker 
+    */
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body className="font-sans antialiased lg:cursor-none">
         <MinimalCursor />
         <MinimalNavbar />
         <main>{children}</main>
