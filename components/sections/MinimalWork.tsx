@@ -40,7 +40,7 @@ const codeProjects = [
 export const MinimalWork = () => {
   return (
     /* FIXED: Changed py-24 to pt-12 pb-24 for mobile. md:py-32 remains unchanged for web */
-    <section id="work" className="relative w-full pt-12 pb-24 md:py-32 bg-white text-neutral-900 border-t border-neutral-100 font-sans overflow-hidden">
+    <section id="work" className="relative w-full pt-4 pb-20 md:pt-32 md:pb-32 bg-white text-neutral-900 border-t border-neutral-100 font-sans overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
