@@ -2,30 +2,34 @@
 
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-general-sans), ui-sans-serif, system-ui, sans-serif;
+/* 🚫 COMPLETELY DISABLE SYSTEM DARK MODE */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+  }
 }
 
 @layer base {
   html {
-    scrollbar-gutter: stable;
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    background-color: #ffffff;
+    color-scheme: light;
   }
 
   body {
     @apply bg-white text-neutral-900 antialiased transition-colors duration-500;
-    font-family: var(--font-general-sans), sans-serif;
     overflow-x: hidden;
   }
 }
 
 /* Selection */
 ::selection {
-  background-color: #111111;
+  background: #111111;
   color: #ffffff;
 }
 
 .dark ::selection {
-  background-color: #ffffff;
+  background: #ffffff;
   color: #000000;
 }
