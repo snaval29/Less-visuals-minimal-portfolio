@@ -8,12 +8,12 @@ import { MinimalCursor } from "@/components/sections/MinimalCursor";
 const generalSans = localFont({
   src: [
     {
-      path: '../public/fonts/GeneralSans-Bold.woff2', // Ensure you have these files
+      path: './fonts/GeneralSans-Bold.woff2', // Ensure you have these files
       weight: '700',
       style: 'normal',
     },
     {
-      path: '../public/fonts/GeneralSans-Medium.woff2',
+      path: './fonts/GeneralSans-Medium.woff2',
       weight: '500',
       style: 'normal',
     }

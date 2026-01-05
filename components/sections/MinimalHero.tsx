@@ -5,13 +5,15 @@ import Image from "next/image"
 
 export const MinimalHero = () => {
   return (
-    <section className="relative w-full min-h-[85vh] flex flex-col justify-start bg-white text-neutral-900 pt-20 pb-10 sm:pt-24 md:pt-32 md:pb-20 font-sans overflow-hidden">
+    /* FIXED: pb-4 on mobile and pb-20 on desktop to eliminate the large white gap before the Work section */
+    <section className="relative w-full min-h-[75vh] md:min-h-[85vh] flex flex-col justify-start bg-white text-neutral-900 pt-20 pb-4 sm:pt-24 md:pt-32 md:pb-20 font-sans overflow-hidden">
+      
       {/* --- ASSET LAYER --- */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {/* 1. Headphones: Lowered position on mobile to be more visible */}
+        {/* 1. Headphones */}
         <div
           className="absolute 
-          top-[10%] left-[5%] w-10 h-10
+          top-[8%] left-[5%] w-10 h-10
           sm:top-[12%] sm:left-[10%] sm:w-20 sm:h-20
           md:top-[19%] md:left-[25%] md:w-28 md:h-28
           lg:top-[18%] lg:left-[25%] lg:w-40 lg:h-40
@@ -26,10 +28,10 @@ export const MinimalHero = () => {
           />
         </div>
 
-        {/* 2. Bulb-Pencil: Optimized placement for smaller screens */}
+        {/* 2. Bulb-Pencil */}
         <div
           className="absolute 
-          top-[15%] right-[5%] w-8 h-8
+          top-[12%] right-[8%] w-8 h-8
           sm:top-[15%] sm:right-[15%] sm:w-20 sm:h-20
           md:top-[25%] md:right-[25%] md:w-26 md:h-26
           lg:top-[22%] lg:right-[30%] lg:w-44 lg:h-44
@@ -38,10 +40,10 @@ export const MinimalHero = () => {
           <Image src="/images/bulb.png" alt="3D Idea Bulb" fill className="object-contain" />
         </div>
 
-        {/* 3. Microphone: Moved up beside CTA on mobile, kept desktop position */}
+        {/* 3. Microphone: RE-ALIGNED specifically for the screenshot issue */}
         <div
           className="absolute 
-          bottom-[20%] right-[10%] w-12 h-12
+          bottom-[5%] left-[60%] w-14 h-14
           sm:bottom-[5%] sm:left-[15%] sm:w-24 sm:h-24
           md:bottom-[8%] md:left-[40%] md:w-24 md:h-24
           lg:bottom-[6%] lg:left-[32%] lg:w-38 lg:h-38
@@ -57,7 +59,7 @@ export const MinimalHero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-8 sm:mt-4 md:mt-0"
+          className="mt-6 sm:mt-4 md:mt-0"
         >
           {/* Status Badge */}
           <div className="flex items-center gap-2 mb-5 sm:mb-6 md:mb-8">
@@ -70,27 +72,27 @@ export const MinimalHero = () => {
             </span>
           </div>
 
-          {/* Headline - Carefully sized to avoid icon overlap */}
+          {/* Headline */}
           <h1
             className="
             text-[15vw] leading-[0.92]
             xs:text-[14vw] xs:leading-[0.9]
             sm:text-6xl sm:leading-[0.88]
             md:text-8xl md:leading-[0.85]
-            lg:text-[9rem]
-            xl:text-[10rem]
+            lg:text-[9.5rem]
+            xl:text-[10.5rem]
             font-bold tracking-tighter mb-6 sm:mb-8 md:mb-10 -ml-1 text-black
-            max-w-[90%] sm:max-w-none"
+            max-w-[95%] sm:max-w-none"
           >
             Hi! <br />
             <span className="text-neutral-500">Naval</span> Here.
           </h1>
 
-          {/* Subline - Constrained width on mobile */}
+          {/* Subline */}
           <p
             className="
-            max-w-[85%] xs:max-w-xs sm:max-w-md md:max-w-lg 
-            text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl 
+            max-w-[90%] xs:max-w-xs sm:max-w-md md:max-w-lg 
+            text-[15px] sm:text-lg md:text-xl lg:text-2xl 
             text-neutral-500 font-medium 
             leading-relaxed mb-8 sm:mb-10 md:mb-12 
             tracking-tight"
@@ -99,8 +101,8 @@ export const MinimalHero = () => {
             technically robust.
           </p>
 
-          {/* CTA Button - Responsive sizing */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-10 mb-4 sm:mb-0">
+          {/* CTA Button */}
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-10 mb-2">
             <a
               href="/resume.pdf"
               target="_blank"
@@ -110,13 +112,12 @@ export const MinimalHero = () => {
                   bg-neutral-900 text-white rounded-xl sm:rounded-xl md:rounded-2xl 
                   transition-all duration-300 transform-gpu
                   active:scale-95 active:translate-y-0.5
-                  shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)] sm:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]
+                  shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)]
                   before:absolute before:inset-0 before:rounded-xl sm:before:rounded-xl md:before:rounded-2xl before:border-t before:border-white/20
-                  after:absolute after:inset-0 after:rounded-xl sm:after:rounded-xl md:after:rounded-2xl after:shadow-[inset_0_-4px_8px_rgba(0,0,0,0.4)]
                 "
               rel="noreferrer"
             >
-              <span className="font-bold text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] relative z-10">
+              <span className="font-bold text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.2em] relative z-10">
                 Get Resume
               </span>
               <Download
