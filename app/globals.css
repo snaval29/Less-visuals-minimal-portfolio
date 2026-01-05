@@ -1,69 +1,31 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
 @import "tailwindcss";
 
-/* 1. TAILWIND THEME CONFIGURATION (v4 Syntax) */
 @theme {
-  /* Link Tailwind's font-sans to the local variable defined in layout.tsx */
   --font-sans: var(--font-general-sans), ui-sans-serif, system-ui, sans-serif;
-  
-  --shadow-3d: 0 10px 20px -10px rgba(0, 0, 0, 0.4);
-  --shadow-3d-hover: 0 15px 30px -12px rgba(0, 0, 0, 0.5);
-  
-  --color-neutral-50: #f9f9f9;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-900: #111111;
 }
 
-/* 2. BASE STYLES */
 @layer base {
   html {
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-white text-neutral-900 antialiased;
-    
-    /* 🚀 FORCE THE LOCAL FONT: This prevents system font overrides on mobile */
-    font-family: var(--font-general-sans), sans-serif !important;
-    
-    /* Force Light Mode - prevents device settings from flipping colors */
-    background-color: #ffffff !important;
-    color: #111111 !important;
-    
-    /* Rendering optimizations for high-res screens */
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    
-    /* Prevent horizontal scroll from assets bleeding out */
+    @apply bg-white text-neutral-900 antialiased transition-colors duration-500;
+    font-family: var(--font-general-sans), sans-serif;
     overflow-x: hidden;
   }
 }
 
-/* 3. UTILITIES */
-.font-sans {
-  /* Ensure the font stays locked even if utility classes are used */
-  font-family: var(--font-general-sans), sans-serif !important;
-}
-
-/* Selection Style */
+/* Selection */
 ::selection {
   background-color: #111111;
   color: #ffffff;
 }
 
-/* GPU Acceleration for smooth animations on mobile */
-.transform-gpu {
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-
-/* Disable heavy blurs on mobile for better performance */
-@media (max-width: 1024px) {
-  .backdrop-blur-xl, .backdrop-blur-lg, .backdrop-blur-md, .backdrop-blur-sm {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background-color: rgba(255, 255, 255, 0.98) !important; 
-  }
+.dark ::selection {
+  background-color: #ffffff;
+  color: #000000;
 }

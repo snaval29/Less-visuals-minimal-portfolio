@@ -33,7 +33,7 @@ const PlaygroundVideo = memo(({ src }: { src: string }) => {
       loop
       muted
       playsInline
-      preload="metadata" // ✅ Stops slow loading by not fetching whole video at once
+      preload="metadata"
       className="w-full h-auto object-cover transform-gpu"
     />
   );
@@ -53,19 +53,19 @@ const allItems = [
 
 export const MinimalPlayground = () => {
   return (
-    <section className="w-full py-24 md:py-32 bg-white text-neutral-900 border-t border-neutral-100 font-sans">
+    /* ✅ Added dark:bg-neutral-950 and dark:text-white transition */
+    <section className="w-full py-24 md:py-32 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white border-t border-neutral-100 dark:border-neutral-900 font-sans transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-black mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-black dark:text-white mb-4">
             The Playground
           </h2>
-          <p className="text-lg text-neutral-500 max-w-md font-medium tracking-tight">
+          <p className="text-lg text-neutral-500 dark:text-neutral-400 max-w-md font-medium tracking-tight">
             Experiments, motion tests, and visual output.
           </p>
         </div>
 
-        {/* ✅ MASONRY OPTIMIZATION */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8 transform-gpu">
           {allItems.map((item, index) => (
             <PlaygroundCard key={item.id} item={item} index={index} />
@@ -84,11 +84,12 @@ const PlaygroundCard = ({ item, index }: { item: any; index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ 
         duration: 0.5, 
-        delay: index % 3 * 0.1, // ✅ Stagger by column rather than absolute index
+        delay: index % 3 * 0.1, 
         ease: [0.16, 1, 0.3, 1] 
       }}
       viewport={{ once: true, margin: "-50px" }}
-      className="break-inside-avoid relative w-full rounded-3xl overflow-hidden bg-neutral-50 group mb-8 will-change-transform border border-neutral-100"
+      /* ✅ Updated card bg and border for dark mode */
+      className="break-inside-avoid relative w-full rounded-3xl overflow-hidden bg-neutral-50 dark:bg-neutral-900 group mb-8 will-change-transform border border-neutral-100 dark:border-neutral-800 transition-colors duration-500"
     >
       {item.type === "image" ? (
         <div className="relative overflow-hidden">
@@ -97,11 +98,11 @@ const PlaygroundCard = ({ item, index }: { item: any; index: number }) => {
             alt={item.alt}
             width={600} 
             height={800} 
-            // ✅ CRITICAL for speed: load proper size based on column width
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/5 pointer-events-none" />
+          {/* ✅ Adjusted overlay for better visibility in both modes */}
+          <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/5 dark:group-hover:bg-white/5 pointer-events-none" />
         </div>
       ) : (
         <PlaygroundVideo src={item.src} />
