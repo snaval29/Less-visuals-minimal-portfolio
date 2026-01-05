@@ -39,17 +39,18 @@ const codeProjects = [
 
 export const MinimalWork = () => {
   return (
-    /* FIXED: Reduced pt-4 for mobile to connect directly with Hero section. 
-       pb-20 ensures enough space before the next section.
-       md:pt-32 md:pb-32 keeps the spacious web look.
-    */
-    <section id="work" className="relative w-full pt-4 pb-20 md:pt-32 md:pb-32 bg-white text-neutral-900 border-t border-neutral-100 font-sans overflow-hidden">
+    /* 🚀 FIXED: pt-0 on mobile eliminates the white space from your screenshot.
+       The border-t creates a clean separation from the Hero. */
+    <section 
+      id="work" 
+      className="relative w-full pt-0 pb-20 md:pt-32 md:pb-32 bg-white text-neutral-900 border-t border-neutral-100 font-sans overflow-hidden"
+    >
       
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* --- HEADER --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-28 gap-4 border-b border-neutral-100 pb-8">
-            <h2 className="text-4xl md:text-7xl font-bold tracking-tighter text-black">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-28 gap-4 border-b border-neutral-100 pb-8 pt-12 md:pt-0">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-black">
                 Selected Work
             </h2>
             <div className="text-neutral-400 font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">
@@ -87,13 +88,13 @@ export const MinimalWork = () => {
                             <div className="w-full lg:col-span-5 flex flex-col">
                                 <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
                                     {project.tags.map(tag => (
-                                        <span key={tag} className="px-3 py-1 bg-neutral-50 border border-neutral-100 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                                        <span key={tag} className="px-3 py-1 bg-neutral-50 border border-neutral-100 rounded-full text-[9px] font-bold uppercase tracking-widest text-neutral-500">
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
 
-                                <h3 className="text-2xl md:text-5xl font-bold mb-3 md:mb-6 text-black tracking-tighter transition-colors group-hover:text-neutral-500">
+                                <h3 className="text-3xl md:text-5xl font-bold mb-3 md:mb-6 text-black tracking-tighter transition-colors group-hover:text-neutral-500">
                                     {project.name}
                                 </h3>
                                 
