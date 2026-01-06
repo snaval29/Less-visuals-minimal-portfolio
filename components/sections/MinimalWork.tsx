@@ -51,9 +51,6 @@ export const MinimalWork = () => {
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-black dark:text-white">
                 Selected Work
             </h2>
-            <div className="text-neutral-400 dark:text-neutral-500 font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">
-                [ 0{designProjects.length + codeProjects.length} Projects ]
-            </div>
         </div>
 
         {/* --- DESIGN PROJECTS LIST --- */}

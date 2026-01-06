@@ -60,7 +60,7 @@ export const MinimalHero = () => {
             </span>
           </div>
 
-          <h1 className="text-[15vw] leading-[0.9] md:text-[9.5rem] md:leading-[0.82] font-bold tracking-tighter mb-8 text-black dark:text-white transition-colors duration-500">
+          <h1 className="text-[15vw] leading-[0.9] md:text-[9.5rem] md:leading-[0.82] font-bold tracking-tighter mb-8 text-black dark:text-white transition-colors duration-50">
             Hi! <br />
             <span className="text-neutral-500 dark:text-neutral-400">Naval</span> Here.
           </h1>

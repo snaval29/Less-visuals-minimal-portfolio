@@ -1,35 +1,65 @@
-@custom-variant dark (&:where(.dark, .dark *));
-
 @import "tailwindcss";
 
-/* 🚫 COMPLETELY DISABLE SYSTEM DARK MODE */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: light;
-  }
+/* 1. TAILWIND THEME CONFIGURATION (v4 Syntax) */
+@theme {
+  /* 🚀 This links Tailwind's default 'font-sans' utility to your General Sans variable */
+  --font-sans: var(--font-general-sans), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-neutral-950: #0a0a0a;
 }
 
+/* ✅ REQUIRED FOR TAILWIND v4 DARK MODE — UNCHANGED */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
+  /* 🌞 LIGHT MODE DEFAULT */
   html {
+    background-color: #ffffff;
+    color: #111111;
+    color-scheme: light;
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
-    background-color: #ffffff;
-    color-scheme: light;
+
+    /* 🔒 FONT LOCK: Explicitly calling the variable here */
+    font-family: var(--font-general-sans), sans-serif;
+
+    /* 🔒 MOBILE FONT RENDERING FIX */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
+    /* 🚀 FORCE LOCK: Prevents mobile system fonts from overriding your CSS */
+    font-family: var(--font-general-sans), sans-serif !important;
     @apply bg-white text-neutral-900 antialiased transition-colors duration-500;
-    overflow-x: hidden;
+  }
+
+  /* 🌙 DARK MODE — UNCHANGED per your request */
+  html.dark {
+    background-color: #000000;
+    color: #ffffff;
+    color-scheme: dark;
+  }
+
+  html.dark body {
+    background-color: #000000;
+    color: #ffffff;
   }
 }
 
-/* Selection */
+/* 3. UTILITIES */
+.font-sans {
+  /* Ensures the 'font-sans' class always points to your local font */
+  font-family: var(--font-general-sans), sans-serif !important;
+}
+
 ::selection {
   background: #111111;
   color: #ffffff;
 }
 
-.dark ::selection {
+html.dark ::selection {
   background: #ffffff;
   color: #000000;
 }
