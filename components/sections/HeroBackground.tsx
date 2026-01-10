@@ -19,7 +19,7 @@ const StarInstance = ({ onComplete }: { onComplete: () => void }) => {
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: [0, 1, 1, 0], x: 500 }}
-        transition={{ duration: 1.5, ease: "linear" }}
+        transition={{ duration: 1.8, ease: "linear" }}
         onAnimationComplete={onComplete}
       >
         <div className="h-[2px] w-[100px] bg-gradient-to-r from-transparent via-white to-transparent shadow-[0_0_15px_white]" />
@@ -42,7 +42,7 @@ const MeteorInstance = ({ onComplete }: { onComplete: () => void }) => {
       <motion.div
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: [0, 1, 1, 0], x: 700 }}
-        transition={{ duration: 1.2, ease: "linear" }}
+        transition={{ duration: 1.4, ease: "linear" }}
         onAnimationComplete={onComplete}
       >
         <div className="h-[4px] w-[180px] rounded-full bg-gradient-to-r from-transparent via-purple-400 to-pink-500 shadow-[0_0_25px_rgba(168,85,247,0.8)]" />
