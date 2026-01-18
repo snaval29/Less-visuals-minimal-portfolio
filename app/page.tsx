@@ -2,6 +2,7 @@ import { MinimalHero } from "@/components/sections/MinimalHero";
 import { MinimalWork } from "@/components/sections/MinimalWork";
 import { MinimalPlayground } from "@/components/sections/MinimalPlayground";
 import { MinimalAbout } from "@/components/sections/MinimalAbout";
+import { MinimalExperience } from "@/components/sections/MinimalExperience";
 import { MinimalContact } from "@/components/sections/MinimalContact";
 
 export default function MinimalPage() {
@@ -12,6 +13,7 @@ export default function MinimalPage() {
       <MinimalHero />
       <MinimalWork />
       <MinimalPlayground />
+      <MinimalExperience/>
       <MinimalAbout />
       <MinimalContact />
     </main>
