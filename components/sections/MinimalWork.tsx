@@ -5,6 +5,13 @@ import { ArrowUpRight, Github, Figma, Layers } from "lucide-react";
 
 const designProjects = [
     {
+        name: "e-Visa UX",
+        tags: ["Research", "Case Study"],
+        description: "Redesigning information structure for a clearer government visa application.",
+        image: "/images/work/visa.png",
+        link: "https://medium.com/@snaval294/redesigning-the-indian-e-visa-website-09336393a04b",
+    },
+    {
         name: "Khan Academy",
         tags: ["App Redesign", "Mobile"],
         description: "Redesigned the progress tracker to leverage micro-rewards and improve learner retention.",
@@ -18,13 +25,7 @@ const designProjects = [
         image: "/images/work/SwayZest.png", 
         link: "https://www.behance.net/gallery/227257103/SwayZest-A-vending-machine-solution", 
     },
-    {
-        name: "DormSpot",
-        tags: ["UX Research", "Case Study"],
-        description: "Solved the 'trust deficit' in student housing by prioritizing verification over aesthetics.",
-        image: "/images/work/dromspot.png",
-        link: "https://www.behance.net/gallery/207552759/DromSpot-UIUX-Case-Study",
-    },
+    
 ];
 
 const codeProjects = [
